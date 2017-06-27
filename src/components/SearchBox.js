@@ -4,13 +4,16 @@ class SearchBox extends React.Component {
     render() {
         return (
             <div>
-                <h1>Emoji Search</h1>
                 <form>
-                    <input type='text'/>
+                    <input type='text' onChange={this.handleChange}/>
                 </form>
 
             </div>
         )
+    }
+    handleChange (eve) {
+        console.log(eve.target.value)
+
     }
 }
 
