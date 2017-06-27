@@ -9,25 +9,31 @@ class HomePage extends React.Component {
      constructor(props){
         super(props);
         this.filterEmojis = this.filterEmojis.bind(this);
-        this.state = {emojis};
+        this.handleFilterInput = this.handleFilterInput.bind(this);
+        this.state = {filterStr: ''};
+        
+    }
+    handleFilterInput (e) {
+        console.log(e.target.value)
+        this.setState({filterStr: e.target.value});
     }
     render() {
         return (
             <div>
                 <h1>Emoji Search</h1>
 
-                <SearchBox emojis={emojis} filterEmojis={this.filterEmojis} />
-                <EmojiList emojis={this.state.emojis} />
+                <SearchBox onFilterInput={this.handleFilterInput}  body={this.state.filterStr} />
+                <EmojiList emojis={this.filterEmojis(emojis)} />
 
             </div>
         );
     }
-    filterEmojis(str, emojis) {
-        str = str.toLowerCase();
-        const filteredList = emojis.filter((emoji) => {
+    filterEmojis(emojis) {
+        const str = this.state.filterStr.toLowerCase();
+        if (this.state.filterStr === '') return emojis.slice(0, 10);
+        return emojis.filter((emoji) => {
             return emoji.title.toLowerCase().includes(str) || emoji.keywords.toLowerCase().includes(str);
         });
-        this.setState({emojis: filteredList});
     }
 
 }
