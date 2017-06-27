@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const MyFirstComponent = React.createElement(
-  'h1', 
-  { style: { color: 'cornflowerblue' } }, 
-  'Welcome to React!'
-);
+import HomePage from './components/HomePage';
 
-ReactDOM.render(Hello, document.getElementById('root'));
+
+
+ReactDOM.render(<HomePage/>, document.getElementById('root'));
